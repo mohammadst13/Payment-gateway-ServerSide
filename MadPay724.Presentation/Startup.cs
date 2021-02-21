@@ -40,7 +40,7 @@ namespace MadPay724.Presentation
             {
                 //app.UseHsts();
             }
-
+            //
             //app.UseHttpsRedirection();
 
             app.UseCors(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
