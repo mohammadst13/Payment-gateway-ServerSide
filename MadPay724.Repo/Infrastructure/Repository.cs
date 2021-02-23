@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MadPay724.Data.Infrastructure
+namespace MadPay724.Repo.Infrastructure
 {
     public abstract class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
     {

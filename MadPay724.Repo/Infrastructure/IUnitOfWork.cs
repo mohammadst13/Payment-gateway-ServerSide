@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MadPay724.Data.Repositories.Repo;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using MadPay724.Data.Repositories.Interface;
+using MadPay724.Repo.Repositories.Interface;
 
-namespace MadPay724.Data.Infrastructure
+namespace MadPay724.Repo.Infrastructure
 {
     public interface IUnitOfWork<TContext> : IDisposable where TContext : DbContext
     {
