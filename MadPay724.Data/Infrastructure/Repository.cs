@@ -8,19 +8,17 @@ using System.Threading.Tasks;
 
 namespace MadPay724.Data.Infrastructure
 {
-    public class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
+    public abstract class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
     {
         #region ctor
         private readonly DbContext _db;
         private readonly DbSet<TEntity> _dbSet;
-
         public Repository(DbContext db)
         {
             _db = db;
             _dbSet = _db.Set<TEntity>();
         }
         #endregion
-
         #region normal 
         public void Insert(TEntity entity)
         {
@@ -68,13 +66,11 @@ namespace MadPay724.Data.Infrastructure
             return _dbSet.Where(where).AsEnumerable();
         }
         #endregion
-
         #region async
         public async Task InsertAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
         }
-
         public async Task<TEntity> GetByIdAsync(object id)
         {
             return await _dbSet.FindAsync(id);
@@ -91,11 +87,7 @@ namespace MadPay724.Data.Infrastructure
         {
             return await _dbSet.Where(where).ToListAsync();
         }
-
-
-
         #endregion
-
         #region dispose
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)
@@ -114,12 +106,10 @@ namespace MadPay724.Data.Infrastructure
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
         ~Repository()
         {
             Dispose(false);
         }
-
         #endregion
     }
 }

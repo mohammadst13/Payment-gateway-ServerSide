@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MadPay724.Data.Repositories.Repo;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace MadPay724.Data.Infrastructure
 {
-    public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : DbContext, new() 
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : DbContext, new()
     {
         #region ctor
         protected readonly DbContext _db;
@@ -15,6 +15,22 @@ namespace MadPay724.Data.Infrastructure
             _db = new TContext();
         }
         #endregion
+
+        #region privaterepository
+        private UserRepository userRepository;
+        public UserRepository UserRepository
+        {
+            get
+            {
+                if (userRepository == null)
+                {
+                    userRepository = new UserRepository(_db);
+                }
+                return userRepository;
+            }
+        }
+        #endregion
+
 
         #region save
         public void Save()
@@ -25,10 +41,16 @@ namespace MadPay724.Data.Infrastructure
         {
             return _db.SaveChangesAsync();
         }
+
         #endregion
+
 
         #region dispose
         private bool disposed = false;
+
+
+
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
@@ -50,6 +72,5 @@ namespace MadPay724.Data.Infrastructure
             Dispose(false);
         }
         #endregion
-
     }
 }
