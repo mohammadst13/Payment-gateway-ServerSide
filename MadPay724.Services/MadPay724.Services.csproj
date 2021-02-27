@@ -8,11 +8,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.4" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\MadPay724.Repo\MadPay724.Repo.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Api\" />
+	  <Folder Include="Site\App\" />
 	</ItemGroup>
 
 </Project>

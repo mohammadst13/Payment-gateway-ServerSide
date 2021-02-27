@@ -36,9 +36,9 @@ namespace MadPay724.Repo.Infrastructure
         {
             _db.SaveChanges();
         }
-        public Task<int> SaveAsync()
+        public async Task<int> SaveAsync()
         {
-            return _db.SaveChangesAsync();
+            return await _db.SaveChangesAsync();
         }
 
         #endregion
